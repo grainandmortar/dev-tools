@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Styling Example - Outline Toggle</title>
+    <link rel="stylesheet" href="../dist/outline-toggle.css">
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background: #2d2d2d;
+            border-radius: 12px;
+        }
+
+        /* Custom button styling - override default styles */
+        .outline-toggle-btn {
+            /* Change position to top-left instead of bottom-right */
+            right: auto !important;
+            left: 20px !important;
+            top: 20px !important;
+            bottom: auto !important;
+            
+            /* Custom styling */
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d) !important;
+            border-radius: 20px !important;
+            font-weight: bold !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1px !important;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3) !important;
+        }
+
+        .outline-toggle-btn:hover {
+            transform: translateY(-3px) scale(1.05) !important;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4) !important;
+        }
+
+        /* Custom state colors */
+        .outline-toggle-btn.state-off {
+            background: linear-gradient(45deg, #667eea, #764ba2) !important;
+        }
+
+        .outline-toggle-btn.state-normal {
+            background: linear-gradient(45deg, #f093fb, #f5576c) !important;
+        }
+
+        .outline-toggle-btn.state-enhanced {
+            background: linear-gradient(45deg, #4facfe, #00f2fe) !important;
+        }
+
+        /* Custom outline colors for dark theme */
+        .outline-mode div {
+            outline-color: #ff4757 !important;
+        }
+
+        .outline-mode-enhanced div {
+            outline-color: #ff4757 !important;
+        }
+
+        .outline-mode-enhanced p,
+        .outline-mode-enhanced span,
+        .outline-mode-enhanced a,
+        .outline-mode-enhanced li {
+            outline-color: #3742fa !important;
+        }
+
+        .outline-mode-enhanced h1,
+        .outline-mode-enhanced h2,
+        .outline-mode-enhanced h3,
+        .outline-mode-enhanced h4,
+        .outline-mode-enhanced h5,
+        .outline-mode-enhanced h6 {
+            outline-color: #2ed573 !important;
+        }
+
+        .outline-mode-enhanced img,
+        .outline-mode-enhanced video {
+            outline-color: #ffa502 !important;
+        }
+
+        .outline-mode-enhanced button,
+        .outline-mode-enhanced input,
+        .outline-mode-enhanced select,
+        .outline-mode-enhanced textarea {
+            outline-color: #a4b0be !important;
+        }
+
+        .outline-mode-enhanced section,
+        .outline-mode-enhanced article,
+        .outline-mode-enhanced main,
+        .outline-mode-enhanced header,
+        .outline-mode-enhanced footer,
+        .outline-mode-enhanced nav {
+            outline-color: #ff3838 !important;
+        }
+
+        /* Demo content styling */
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #3a3a3a;
+            border-radius: 8px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .form-row > div {
+            flex: 1;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            background: #4a4a4a;
+            border: 1px solid #666;
+            color: #e0e0e0;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #0066cc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .grid-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .grid-item {
+            background: #4a4a4a;
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        code {
+            background: #1a1a1a;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #f8f8f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Custom Styling Example</h1>
+            <p>This example shows how you can customize the appearance of the outline toggle button and outline colors.</p>
+        </header>
+
+        <section class="demo-section">
+            <h2>Customizations Applied</h2>
+            <ul>
+                <li><strong>Position:</strong> Moved to top-left corner</li>
+                <li><strong>Styling:</strong> Gradient backgrounds with custom colors</li>
+                <li><strong>Animation:</strong> Enhanced hover effects</li>
+                <li><strong>Outline Colors:</strong> Custom colors optimized for dark theme</li>
+            </ul>
+        </section>
+
+        <section class="demo-section">
+            <h2>CSS Overrides Used</h2>
+            <p>Here are the key CSS overrides used in this example:</p>
+            
+            <h3>Button Position</h3>
+            <pre><code>.outline-toggle-btn {
+    right: auto !important;
+    left: 20px !important;
+    top: 20px !important;
+    bottom: auto !important;
+}</code></pre>
+
+            <h3>Custom State Colors</h3>
+            <pre><code>.outline-toggle-btn.state-enhanced {
+    background: linear-gradient(45deg, #4facfe, #00f2fe) !important;
+}</code></pre>
+
+            <h3>Dark Theme Outline Colors</h3>
+            <pre><code>.outline-mode-enhanced h1, .outline-mode-enhanced h2, /* ... */ {
+    outline-color: #2ed573 !important;
+}</code></pre>
+        </section>
+
+        <main>
+            <article class="demo-section">
+                <h2>Test Elements</h2>
+                <p>These elements demonstrate the custom outline colors in action.</p>
+                
+                <div class="grid-demo">
+                    <div class="grid-item">
+                        <h3>Headings</h3>
+                        <h4>Will be green</h4>
+                        <h5>In enhanced mode</h5>
+                    </div>
+                    
+                    <div class="grid-item">
+                        <h3>Text Elements</h3>
+                        <p>Paragraphs will be <span>blue</span> and <a href="#">links too</a>.</p>
+                        <ul>
+                            <li>List items</li>
+                            <li>Are also blue</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="grid-item">
+                        <h3>Form Elements</h3>
+                        <div class="form-row">
+                            <div>
+                                <input type="text" placeholder="Input field">
+                            </div>
+                            <div>
+                                <select>
+                                    <option>Select option</option>
+                                </select>
+                            </div>
+                        </div>
+                        <textarea placeholder="Textarea"></textarea>
+                        <button type="button">Button</button>
+                    </div>
+                </div>
+
+                <h3>Media Elements</h3>
+                <div style="text-align: center;">
+                    <img src="https://via.placeholder.com/150x100/ff4757/white?text=Image" alt="Test image" style="margin: 10px;">
+                    <img src="https://via.placeholder.com/150x100/2ed573/white?text=Media" alt="Test image" style="margin: 10px;">
+                </div>
+            </article>
+        </main>
+
+        <footer class="demo-section">
+            <h3>Try It Out!</h3>
+            <p>Click the custom-styled button in the top-left corner to see the dark-themed outline colors in action.</p>
+            <p><strong>Tip:</strong> You can override any aspect of the tool's appearance by using <code>!important</code> in your CSS rules.</p>
+        </footer>
+    </div>
+
+    <!-- Custom styled outline toggle button -->
+    <button id="outlineToggle" class="outline-toggle-btn state-off">
+        <span id="outlineToggleText">Outline Mode</span>
+    </button>
+
+    <script src="../dist/outline-toggle.js"></script>
+</body>
+</html>

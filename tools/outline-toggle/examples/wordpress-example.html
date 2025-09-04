@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordPress Integration Example - Outline Toggle</title>
+    <link rel="stylesheet" href="../dist/outline-toggle.css">
+    <style>
+        body { font-family: system-ui, sans-serif; line-height: 1.6; margin: 0; }
+        .wp-container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .wp-header { background: #23282d; color: white; padding: 20px; margin-bottom: 30px; }
+        .wp-content { display: flex; gap: 30px; }
+        .wp-main { flex: 2; }
+        .wp-sidebar { flex: 1; background: #f1f1f1; padding: 20px; }
+        .wp-widget { margin-bottom: 30px; }
+        .wp-footer { background: #23282d; color: white; padding: 20px; margin-top: 30px; }
+        .wp-post { background: white; padding: 20px; margin-bottom: 20px; border: 1px solid #ddd; }
+        .code-block { background: #f4f4f4; padding: 15px; border-left: 4px solid #0073aa; margin: 20px 0; font-family: monospace; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <div class="wp-container">
+        
+        <header class="wp-header">
+            <h1>WordPress Integration Example</h1>
+            <nav>
+                <a href="#" style="color: #0073aa; margin-right: 20px;">Home</a>
+                <a href="#" style="color: #0073aa; margin-right: 20px;">About</a>
+                <a href="#" style="color: #0073aa; margin-right: 20px;">Contact</a>
+            </nav>
+        </header>
+
+        <div class="wp-content">
+            <main class="wp-main">
+                
+                <article class="wp-post">
+                    <h1>How to Integrate Outline Toggle with WordPress</h1>
+                    
+                    <h2>Step 1: Upload Files</h2>
+                    <p>Upload the CSS and JS files to your theme directory:</p>
+                    <div class="code-block">wp-content/themes/your-theme/outline-toggle.css
+wp-content/themes/your-theme/outline-toggle.js</div>
+
+                    <h2>Step 2: Enqueue Scripts (functions.php)</h2>
+                    <div class="code-block">function add_outline_toggle_tool() {
+    // Only load for administrators and in development
+    if (WP_DEBUG || current_user_can('administrator')) {
+        wp_enqueue_style(
+            'outline-toggle', 
+            get_template_directory_uri() . '/outline-toggle.css'
+        );
+        wp_enqueue_script(
+            'outline-toggle', 
+            get_template_directory_uri() . '/outline-toggle.js'
+        );
+    }
+}
+add_action('wp_enqueue_scripts', 'add_outline_toggle_tool');</div>
+
+                    <h2>Step 3: Add Button (footer.php)</h2>
+                    <div class="code-block">&lt;?php if (WP_DEBUG || current_user_can('administrator')) : ?&gt;
+&lt;button id="outlineToggle" class="outline-toggle-btn state-off"&gt;
+    &lt;span id="outlineToggleText"&gt;Outline Mode&lt;/span&gt;
+&lt;/button&gt;
+&lt;?php endif; ?&gt;</div>
+
+                    <h2>Alternative: Plugin Method</h2>
+                    <p>You can also create a simple plugin:</p>
+                    <div class="code-block">&lt;?php
+/*
+Plugin Name: Outline Toggle Development Tool
+Description: Adds outline toggle tool for development
+Version: 1.0
+*/
+
+function outline_toggle_plugin_init() {
+    if (!WP_DEBUG && !current_user_can('administrator')) {
+        return;
+    }
+    
+    wp_enqueue_style(
+        'outline-toggle-plugin', 
+        plugin_dir_url(__FILE__) . 'outline-toggle.css'
+    );
+    wp_enqueue_script(
+        'outline-toggle-plugin', 
+        plugin_dir_url(__FILE__) . 'outline-toggle.js'
+    );
+    
+    add_action('wp_footer', 'outline_toggle_button');
+}
+add_action('init', 'outline_toggle_plugin_init');
+
+function outline_toggle_button() {
+    echo '&lt;button id="outlineToggle" class="outline-toggle-btn state-off"&gt;
+            &lt;span id="outlineToggleText"&gt;Outline Mode&lt;/span&gt;
+          &lt;/button&gt;';
+}
+?&gt;</div>
+
+                </article>
+
+                <article class="wp-post">
+                    <h2>Security Considerations</h2>
+                    <ul>
+                        <li><strong>Development Only:</strong> Never load in production</li>
+                        <li><strong>User Permissions:</strong> Only show to administrators</li>
+                        <li><strong>Environment Check:</strong> Use WP_DEBUG flag</li>
+                        <li><strong>Remove Before Launch:</strong> Always clean up before going live</li>
+                    </ul>
+                </article>
+
+            </main>
+
+            <aside class="wp-sidebar">
+                
+                <div class="wp-widget">
+                    <h3>Widget Title</h3>
+                    <p>This is a typical WordPress sidebar widget. Notice how different elements get different colored outlines in enhanced mode.</p>
+                    <form>
+                        <input type="search" placeholder="Search...">
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+
+                <div class="wp-widget">
+                    <h3>Recent Posts</h3>
+                    <ul>
+                        <li><a href="#">Sample Post One</a></li>
+                        <li><a href="#">Another Great Post</a></li>
+                        <li><a href="#">WordPress Development Tips</a></li>
+                    </ul>
+                </div>
+
+                <div class="wp-widget">
+                    <h3>Categories</h3>
+                    <select>
+                        <option>Web Development</option>
+                        <option>WordPress</option>
+                        <option>JavaScript</option>
+                        <option>CSS</option>
+                    </select>
+                </div>
+
+            </aside>
+        </div>
+
+        <footer class="wp-footer">
+            <div>
+                <p>&copy; 2024 Your Website. All rights reserved.</p>
+                <p>This example shows how the outline toggle tool works with typical WordPress layouts.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Development Tool - Only shown to administrators -->
+    <button id="outlineToggle" class="outline-toggle-btn state-off">
+        <span id="outlineToggleText">Outline Mode</span>
+    </button>
+
+    <script src="../dist/outline-toggle.js"></script>
+</body>
+</html>

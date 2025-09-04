@@ -1,0 +1,37 @@
+{
+  "name": "outline-toggle-tool",
+  "version": "1.0.0",
+  "description": "A development debugging tool for visualizing HTML element layouts with colored outlines",
+  "main": "dist/outline-toggle.js",
+  "files": [
+    "dist/",
+    "examples/",
+    "README.md"
+  ],
+  "scripts": {
+    "demo": "open examples/demo.html",
+    "wordpress-demo": "open examples/wordpress-example.html"
+  },
+  "keywords": [
+    "development",
+    "debugging",
+    "css",
+    "layout",
+    "outline",
+    "visualization",
+    "frontend",
+    "developer-tools"
+  ],
+  "author": "Grain & Mortar",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/outline-toggle-tool.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/outline-toggle-tool/issues"
+  },
+  "homepage": "https://github.com/yourusername/outline-toggle-tool#readme",
+  "devDependencies": {},
+  "dependencies": {}
+}

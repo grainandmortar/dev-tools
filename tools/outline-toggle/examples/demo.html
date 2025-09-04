@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outline Toggle Tool - Demo</title>
+    <link rel="stylesheet" href="../dist/outline-toggle.css">
+    <style>
+        /* Demo page styling */
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background: #007cba;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background: #005a87;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        
+        .media-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .media-section img {
+            max-width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Outline Toggle Tool Demo</h1>
+            <p>This demo page contains various HTML elements to showcase the outline toggle functionality.</p>
+        </header>
+
+        <section class="hero">
+            <h2>Try the Outline Toggle!</h2>
+            <p>Look for the floating button in the bottom-right corner, or press <strong>Ctrl+Shift+O</strong> (Cmd+Shift+O on Mac)</p>
+        </section>
+
+        <main>
+            <article>
+                <h2>Different Element Types</h2>
+                <p>This page includes various HTML elements that will be highlighted differently in enhanced mode:</p>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h3>Text Elements</h3>
+                        <p>This is a paragraph with <span>span elements</span> and <a href="#">links</a>.</p>
+                        <ul>
+                            <li>List item one</li>
+                            <li>List item two</li>
+                            <li>List item three</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Form Elements</h3>
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Category:</label>
+                                <select id="category" name="category">
+                                    <option>Option 1</option>
+                                    <option>Option 2</option>
+                                    <option>Option 3</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message:</label>
+                                <textarea id="message" name="message" rows="4"></textarea>
+                            </div>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+
+                <section class="media-section">
+                    <h3>Media Elements</h3>
+                    <img src="https://via.placeholder.com/200x150/4CAF50/white?text=Image+1" alt="Placeholder 1">
+                    <img src="https://via.placeholder.com/200x150/2196F3/white?text=Image+2" alt="Placeholder 2">
+                    <img src="https://via.placeholder.com/200x150/FF9800/white?text=Image+3" alt="Placeholder 3">
+                </section>
+
+                <div class="grid">
+                    <div class="card">
+                        <h4>Heading Levels</h4>
+                        <h1>H1 Heading</h1>
+                        <h2>H2 Heading</h2>
+                        <h3>H3 Heading</h3>
+                        <h4>H4 Heading</h4>
+                        <h5>H5 Heading</h5>
+                        <h6>H6 Heading</h6>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>More Div Elements</h4>
+                        <div>
+                            <div>Nested div level 1
+                                <div>Nested div level 2
+                                    <div>Nested div level 3</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <h3>How to Use</h3>
+            <ol>
+                <li><strong>Click the button</strong> in the bottom-right corner to cycle modes</li>
+                <li><strong>Keyboard shortcut:</strong> Ctrl+Shift+O (Cmd+Shift+O on Mac)</li>
+                <li><strong>Three modes:</strong> Off → Normal (divs only) → Enhanced (all elements)</li>
+            </ol>
+            <p>The tool remembers your preference using localStorage.</p>
+        </footer>
+    </div>
+
+    <!-- Outline Toggle Tool -->
+    <button id="outlineToggle" class="outline-toggle-btn state-off">
+        <span id="outlineToggleText">Outline Mode</span>
+    </button>
+
+    <script src="../dist/outline-toggle.js"></script>
+</body>
+</html>

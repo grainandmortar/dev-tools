@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outline Toggle Development Tool</title>
+    <style>
+        /**
+         * Outline Toggle Development Tool CSS
+         * 
+         * DEVELOPMENT ONLY - DO NOT INCLUDE IN PRODUCTION
+         * This is a standalone development debugging tool for visualizing element layouts.
+         */
+
+        /* Toggle Button Styles */
+        .outline-toggle-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 100000;
+            background-color: #2d5a3d;
+            color: white;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        .outline-toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Button state colors */
+        .outline-toggle-btn.state-off {
+            background-color: #2d5a3d; /* Moss green */
+        }
+
+        .outline-toggle-btn.state-normal {
+            background-color: #8b4513; /* Brick red */
+        }
+
+        .outline-toggle-btn.state-enhanced {
+            background-color: #1e40af; /* Primary blue */
+        }
+
+        /* Normal Outline Mode - Shows red outlines on all divs for alignment visualization */
+        .outline-mode div {
+            outline: 1px solid red !important;
+        }
+
+        /* Enhanced Outline Mode - Shows different colored outlines on all elements */
+        .outline-mode-enhanced * {
+            outline: 1px solid red !important;
+        }
+
+        /* Color coding for different element types in enhanced mode */
+        .outline-mode-enhanced div {
+            outline: 1px solid red !important;
+        }
+
+        /* Text elements - Blue */
+        .outline-mode-enhanced p,
+        .outline-mode-enhanced span,
+        .outline-mode-enhanced a,
+        .outline-mode-enhanced li {
+            outline: 1px solid blue !important;
+        }
+
+        /* Headings - Green */
+        .outline-mode-enhanced h1,
+        .outline-mode-enhanced h2,
+        .outline-mode-enhanced h3,
+        .outline-mode-enhanced h4,
+        .outline-mode-enhanced h5,
+        .outline-mode-enhanced h6 {
+            outline: 1px solid green !important;
+        }
+
+        /* Media elements - Orange */
+        .outline-mode-enhanced img,
+        .outline-mode-enhanced video {
+            outline: 1px solid orange !important;
+        }
+
+        /* Form elements - Purple */
+        .outline-mode-enhanced button,
+        .outline-mode-enhanced input,
+        .outline-mode-enhanced select,
+        .outline-mode-enhanced textarea {
+            outline: 1px solid purple !important;
+        }
+
+        /* Structural elements - Dark Red (thicker) */
+        .outline-mode-enhanced section,
+        .outline-mode-enhanced article,
+        .outline-mode-enhanced main,
+        .outline-mode-enhanced header,
+        .outline-mode-enhanced footer,
+        .outline-mode-enhanced nav {
+            outline: 2px solid darkred !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- DEVELOPMENT TOOL - REMOVE BEFORE PRODUCTION -->
+    <!-- Outline Toggle Button -->
+    <!-- Floating button in bottom right for toggling element outlines -->
+    <button id="outlineToggle" 
+            class="outline-toggle-btn state-off">
+        <span id="outlineToggleText">Outline Mode</span>
+    </button>
+    <!-- END DEVELOPMENT TOOL -->
+
+    <script>
+        // Outline Toggle Functionality
+        // Cycles through: Off → Normal (divs only) → Enhanced (everything) → Off
+        (function() {
+            'use strict';
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                const toggleButton = document.getElementById('outlineToggle');
+                const toggleText = document.getElementById('outlineToggleText');
+                
+                if (!toggleButton || !toggleText) {
+                    console.warn('Outline Toggle: Button elements not found');
+                    return;
+                }
+
+                const STORAGE_KEY = 'outlineMode';
+
+                // States: 'off', 'normal', 'enhanced'
+                let currentState = localStorage.getItem(STORAGE_KEY) || 'off';
+
+                // Function to set outline mode
+                function setOutlineMode(mode) {
+                    // Remove all outline classes
+                    document.body.classList.remove('outline-mode', 'outline-mode-enhanced');
+                    toggleButton.classList.remove('state-off', 'state-normal', 'state-enhanced');
+
+                    switch(mode) {
+                        case 'normal':
+                            document.body.classList.add('outline-mode');
+                            toggleButton.classList.add('state-normal');
+                            toggleText.textContent = 'Outline: Divs';
+                            localStorage.setItem(STORAGE_KEY, 'normal');
+                            break;
+                        case 'enhanced':
+                            document.body.classList.add('outline-mode-enhanced');
+                            toggleButton.classList.add('state-enhanced');
+                            toggleText.textContent = 'Outline: All';
+                            localStorage.setItem(STORAGE_KEY, 'enhanced');
+                            break;
+                        case 'off':
+                        default:
+                            toggleButton.classList.add('state-off');
+                            toggleText.textContent = 'Outline Mode';
+                            localStorage.removeItem(STORAGE_KEY);
+                            currentState = 'off';
+                            return;
+                    }
+                    currentState = mode;
+                }
+
+                // Apply saved state on load
+                setOutlineMode(currentState);
+
+                // Cycle through states on button click
+                toggleButton.addEventListener('click', function() {
+                    switch(currentState) {
+                        case 'off':
+                            setOutlineMode('normal');
+                            break;
+                        case 'normal':
+                            setOutlineMode('enhanced');
+                            break;
+                        case 'enhanced':
+                            setOutlineMode('off');
+                            break;
+                        default:
+                            setOutlineMode('off');
+                    }
+                });
+
+                // Keyboard shortcut: Ctrl/Cmd + Shift + O
+                document.addEventListener('keydown', function(e) {
+                    if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'O') {
+                        e.preventDefault();
+                        toggleButton.click();
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
